@@ -1,0 +1,45 @@
+{
+  "name": "cycle-discord",
+  "description": "Cycle.js Discord driver",
+  "main": "index.js",
+  "private": true,
+  "keywords": [
+    "cyclejs",
+    "discord"
+  ],
+  "scripts": {
+    "lint": "tslint './src/**/*.ts'",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "release": {
+    "branch": "master"
+  },
+  "author": "goodmind <andwebar@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/goodmind/cycle-discord"
+  },
+  "devDependencies": {
+    "@cycle/base": "^4.0.1",
+    "cz-conventional-changelog": "^1.1.6",
+    "semantic-release": "^4.3.5",
+    "tslint": "^3.13.0-dev.0",
+    "typescript": "^2.0.0-dev.20160705"
+  },
+  "dependencies": {
+    "@cycle/rxjs-adapter": "^3.0.1",
+    "discord.js": "^8.0.0"
+  },
+  "peerDependencies": {
+    "rxjs": "^5.0.0-beta.9"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
