@@ -1,0 +1,6 @@
+lib/
+example/
+node_modules/
+.idea/
+typings/
+npm-debug.log
