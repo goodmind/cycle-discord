@@ -9,12 +9,13 @@ export class MainDiscordSource implements DiscordSource {
   constructor (private client: Client,
                private _res: Observable<any>,
                private runStreamAdapter: StreamAdapter) {
+    let self = this
     for (let name of Object.getOwnPropertyNames(Object.getPrototypeOf(client))) {
       let method: any = (client as any)[name];
       if (!(method instanceof Function) || method === Client) continue
       Object.defineProperty(this, name, {
         value: function (...args: any[]) {
-          return method.bind(client)(...args)
+          return self.adapt(Observable.fromPromise(method.bind(client)(...args)))
         }
       })
     }
@@ -30,8 +31,7 @@ export class MainDiscordSource implements DiscordSource {
 
       switch (eventType) {
         case 'message':
-          return event
-            .filter((m: Message) => m.author.id != this.client.user.id && !m.author.bot && m.author.id != '159338627749380096')
+          return event.filter((m: Message) => m.author.id != this.client.user.id && !m.author.bot)
         default:
           return event
       }
